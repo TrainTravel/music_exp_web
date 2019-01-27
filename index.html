@@ -1,0 +1,662 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<meta name="description" content="&#24773;&#32210;&#38899;&#27138;&#32218;&#19978;&#23526;&#39511;" >
+	
+	<title>MUSIC_EMOTION EXP</title>	
+	<link href="../styles.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="js/mediaelement-and-player.min.js"></script>  
+	<script type='text/javascript' >
+		function FunAlert(){
+			window.alert('您即將寄出填答資料!')
+		}
+	</script>
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	<style>
+    #pagename{
+	    font-family: source-han-sans-traditional, sans-serif;
+        font-style: normal;
+        font-weight: 95;	
+	}	
+	#info{
+	    font-size: 20px;
+	    margin-top: 50px;
+	    font-family: source-han-sans-traditional, sans-serif;
+        font-style: normal;
+        font-weight: 95;	
+	}
+	#other_info{
+		margin-top: 35px;
+		marin-bottom: 30px;
+		font-height: 1.2em;
+	    font-size: 1em;
+	    font-family: source-han-sans-traditional, sans-serif;
+        font-style: normal;
+        font-weight: 95;	
+		color: #355;    
+	}
+	#fMRI{
+	    font-height: 1.15em;
+	    font-size: 1em;
+	    font-family: source-han-sans-traditional, sans-serif;
+        font-style: normal;
+        font-weight: 95;	
+		color: #444;    
+	}
+	#description{
+	    
+		line-height: 28px;
+		font-size: 20px;
+        font-family: source-han-sans-traditional, sans-serif;
+        font-style: normal;
+        font-weight: 70;	
+		color: #444;
+		
+	  }
+	  
+	#playlist{
+		position: relative;
+		top: 30px;
+		background-color: AliceBlue;
+	}		  
+	 body{
+		position: relative;
+		top: 25px;
+		background-color: hsl(200,100%,95%);	 
+	}
+	
+	  h1{
+		  font: "Microsoft JhengHei";
+		  color: blue;
+		  text-align: center;	
+	  }
+
+	  h4{
+	      line-height: 1.4;
+          font-size: 30px;
+		  <!--margin-bottom: 0.4em; 
+		  margin-left:3em;
+		  margin-right:3em;
+		  -->
+	  }
+	  h4.warn{
+	      color: red;
+	  }
+
+      div.question{
+          padding-left:1em;
+
+      }
+	  div.info{
+	      width:100%
+	      margin-top: 50px;
+		  background-color: #ffffe6;		
+	  }
+	  
+
+      audio.q9{
+      	  margin-left:0.5em;
+      }
+	  
+	  button.media{
+		  width: 100%;
+		  background-color: hsla(80,100%,80%,0); 
+		  border-style:hidden;
+		  font-size: 1.05em;
+		  text-align: left;
+		  margin-left: 0em;
+		  margin-top: 0.2em;
+		  
+	  }
+	  
+	  select.yesno{
+		  width: 10%;
+	      border: 2.5px ridge navy;
+		  border-radius: 5px;
+		  border-style: groove;
+		  color: #333333; 
+		  font-size: 1.15em;
+		  font-weight: bold;		  
+	  }
+	  
+	  label{
+	      margin-left: 30px;
+		  line-height: 1.8em;
+		  font-size: 1.2em;
+		  <!--position: absolute;
+		  left: 100px; -->
+	  }
+	  
+	  label.info{
+		  <!--color: DarkBlue; -->
+		  font-size: 1.2em;
+		  font-weight: bold;
+	  }
+	  p.other_info{
+	      padding-left: 50px;
+	  }
+	  p.question{
+          padding-top:1em;
+	      padding-left: 1em;
+	   	  line-height: 1.2em;
+		  font-size: 1em;
+          font-family: source-han-sans-traditional, sans-serif;
+          font-style: normal;
+          font-weight: 80;	
+		  color: #333;		  
+	  }	 
+	  
+	  p.media{  
+	      position: relative;
+		  left: 0.2em;
+		  
+		  width: 7%;
+		  margin-top:2.3em;		  
+		  
+		  padding-left:0.5em;
+
+		  font: "Arial";
+		  font-style: bold;
+		  font-size: 1.3em;
+		  line-height: 1.45em;
+		  
+		  border-left: 3px;
+		  border-size: 2px;
+		  border-radius: 3px;
+		  border-color: yellow;
+		  
+		  color: yellow;
+		  background-color: purple;
+	  }
+
+      input{
+      	  font-size: 1em;
+          margin-left: 0.7em;      
+      }
+	  
+	  input.ans{
+	      width: 700px;
+		  height: 150px;
+		  
+          padding: 3px;
+          border: solid 1px #dcdcdc;
+          transition: box-shadow 0.3s, border 0.3s;		  
+		  
+		  margin-top: 0.2em;
+		  margin-left: 2.5em;
+		  color: #333333; 
+	  }
+
+	  input.Email:focus{
+		  border: 2px solid #555;
+		  border-radius: 4px;
+		}
+	  input[type=submit]{
+		  margin-left: 45%;
+		  margin-top: 8px;
+		  
+		  border: 3px groove deepskyblue;
+		  border-radius: 8px;
+		  line-height: 1.5em;
+		  font-size: 1.3em;
+		  font-weight: bold;
+		  color: purple;
+		  background-color: #b3ecff;
+		}		
+	   textarea{
+	      margin-left: 30px;
+	      width: 70%;
+	   }
+	</style>
+</head>
+
+<body>
+
+    <h1>音樂情緒實驗</h1>	
+	<div id="description">
+        <h4>請您閉上眼睛，專心聆聽以下每段音樂並體驗其情感，然後回答對四個敘述的同意程度。建議您多聽幾次，熟悉音樂，以便選出最佳答案。
+（每段音樂的主題皆在第18秒出現）
+
+        </h4>
+	</div>
+	
+	<form class='info' action='test_try.php' method='post' accept-charset="utf-8">	
+	<div id="playlist">
+		<div class='question'>
+			<p class='media'>M01</p>
+			<audio id="M01" controls><source src="music/M1.mp3" type="audio/mpeg">M01</audio><br>
+            <p class='question'>1)主題出現之前，我非常期待接下來的音樂主題。</p>
+                <input type='radio' name='1-1' value='1極不同意'> 1極不同意
+                <input type="radio" name='1-1' value='2不同意'> 2不同意
+                <input type="radio" name='1-1' value='3不太同意'> 3不太同意
+                <input type="radio" name='1-1' value='4無意見'> 4無意見
+                <input type='radio' name='1-1' value='5有點同意'> 5有點同意
+                <input type="radio" name='1-1' value='6同意'> 6同意
+                <input type="radio" name='1-1' value='7極為同意'> 7極為同意
+
+
+	        <p class='question'>2)主題出現時，傳達了強烈的愉悅感。</p>
+     		
+                <input type='radio' name='1-2' value='1極不同意'> 1極不同意
+                <input type="radio" name='1-2' value='2不同意'> 2不同意
+                <input type="radio" name='1-2' value='3不太同意'> 3不太同意
+                <input type="radio" name='1-2' value='4無意見'> 4無意見
+                <input type='radio' name='1-2' value='5有點同意'> 5有點同意
+                <input type="radio" name='1-2' value='6同意'> 6同意
+                <input type="radio" name='1-2' value='7極為同意'> 7極為同意
+
+            <p class='question'>3)主題出現時，傳達了強烈的悲劇性。</p>
+
+                <input type='radio' name='1-3' value='1極不同意'> 1極不同意
+                <input type="radio" name='1-3' value='2不同意'> 2不同意
+                <input type="radio" name='1-3' value='3不太同意'> 3不太同意
+                <input type="radio" name='1-3' value='4無意見'> 4無意見
+                <input type='radio' name='1-3' value='5有點同意'> 5有點同意
+                <input type="radio" name='1-3' value='6同意'> 6同意
+                <input type="radio" name='1-3' value='7極為同意'> 7極為同意
+
+            <p class='question'>4)現在我非常熟悉這段音樂。</p>
+
+                <input type='radio' name='1-4' value='1極不同意'> 1極不同意
+                <input type="radio" name='1-4' value='2不同意'> 2不同意
+                <input type="radio" name='1-4' value='3不太同意'> 3不太同意
+                <input type="radio" name='1-4' value='4無意見'> 4無意見
+                <input type='radio' name='1-4' value='5有點同意'> 5有點同意
+                <input type="radio" name='1-4' value='6同意'> 6同意
+                <input type="radio" name='1-4' value='7極為同意'> 7極為同意
+
+		</div>
+		
+		<div class='question'>
+		<p class='media'>M02</p>
+		<audio id="M02" controls><source src="music/M2.mp3" type="audio/mpeg"></audio><br>
+            <p class='question'>1)主題出現之前，我非常期待接下來的音樂主題。</p>
+                <input type='radio' name='2-1' value='1極不同意'> 1極不同意
+                <input type="radio" name='2-1' value='2不同意'> 2不同意
+                <input type="radio" name='2-1' value='3不太同意'> 3不太同意
+                <input type="radio" name='2-1' value='4無意見'> 4無意見
+                <input type='radio' name='2-1' value='5有點同意'> 5有點同意
+                <input type="radio" name='1-1' value='6同意'> 6同意
+                <input type="radio" name='1-1' value='7極為同意'> 7極為同意
+
+
+	    <p class='question'>2)主題出現時，傳達了強烈的愉悅感。</p>
+     		
+                <input type='radio' name='2-2' value='1極不同意'> 1極不同意
+                <input type="radio" name='2-2' value='2不同意'> 2不同意
+                <input type="radio" name='2-2' value='3不太同意'> 3不太同意
+                <input type="radio" name='2-2' value='4無意見'> 4無意見
+                <input type='radio' name='2-2' value='5有點同意'> 5有點同意
+                <input type="radio" name='2-2' value='6同意'> 6同意
+                <input type="radio" name='1-2' value='7極為同意'> 7極為同意
+
+            <p class='question'>3)主題出現時，傳達了強烈的悲劇性。</p>
+
+                <input type='radio' name='2-3' value='1極不同意'> 1極不同意
+                <input type="radio" name='2-3' value='2不同意'> 2不同意
+                <input type="radio" name='2-3' value='3不太同意'> 3不太同意
+                <input type="radio" name='2-3' value='4無意見'> 4無意見
+                <input type='radio' name='2-3' value='5有點同意'> 5有點同意
+                <input type="radio" name='2-3' value='6同意'> 6同意
+                <input type="radio" name='2-3' value='7極為同意'> 7極為同意
+
+            <p class='question'>4)現在我非常熟悉這段音樂。</p>
+
+                <input type='radio' name='2-4' value='1極不同意'> 1極不同意
+                <input type="radio" name='2-4' value='2不同意'> 2不同意
+                <input type="radio" name='2-4' value='3不太同意'> 3不太同意
+                <input type="radio" name='2-4' value='4無意見'> 4無意見
+                <input type='radio' name='2-4' value='5有點同意'> 5有點同意
+                <input type="radio" name='2-4' value='6同意'> 6同意
+                <input type="radio" name='2-4' value='7極為同意'> 7極為同意
+
+		</div>
+
+		<div class='question'>
+		<p class='media'>M03</p>
+		<audio id="M03" controls><source src="music/M3.mp3" type="audio/mpeg"></audio><br>
+            <p class='question'>1)主題出現之前，我非常期待接下來的音樂主題。</p>
+                <input type='radio' name='3-1' value='1極不同意'> 1極不同意
+                <input type="radio" name='3-1' value='2不同意'> 2不同意
+                <input type="radio" name='3-1' value='3不太同意'> 3不太同意
+                <input type="radio" name='3-1' value='4無意見'> 4無意見
+                <input type='radio' name='3-1' value='5有點同意'> 5有點同意
+                <input type="radio" name='3-1' value='6同意'> 6同意
+                <input type="radio" name='3-1' value='7極為同意'> 7極為同意
+
+
+	    <p class='question'>2)主題出現時，傳達了強烈的愉悅感。</p>
+     		
+                <input type='radio' name='3-2' value='1極不同意'> 1極不同意
+                <input type="radio" name='3-2' value='2不同意'> 2不同意
+                <input type="radio" name='3-2' value='3不太同意'> 3不太同意
+                <input type="radio" name='3-2' value='4無意見'> 4無意見
+                <input type='radio' name='3-2' value='5有點同意'> 5有點同意
+                <input type="radio" name='3-2' value='6同意'> 6同意
+                <input type="radio" name='3-2' value='7極為同意'> 7極為同意
+
+            <p class='question'>3)主題出現時，傳達了強烈的悲劇性。</p>
+
+                <input type='radio' name='3-3' value='1極不同意'> 1極不同意
+                <input type="radio" name='3-3' value='2不同意'> 2不同意
+                <input type="radio" name='3-3' value='3不太同意'> 3不太同意
+                <input type="radio" name='3-3' value='4無意見'> 4無意見
+                <input type='radio' name='3-3' value='5有點同意'> 5有點同意
+                <input type="radio" name='3-3' value='6同意'> 6同意
+                <input type="radio" name='3-3' value='7極為同意'> 7極為同意
+
+            <p class='question'>4)現在我非常熟悉這段音樂。</p>
+
+                <input type='radio' name='3-4' value='1極不同意'> 1極不同意
+                <input type="radio" name='3-4' value='2不同意'> 2不同意
+                <input type="radio" name='3-4' value='3不太同意'> 3不太同意
+                <input type="radio" name='3-4' value='4無意見'> 4無意見
+                <input type='radio' name='3-4' value='5有點同意'> 5有點同意
+                <input type="radio" name='3-4' value='6同意'> 6同意
+                <input type="radio" name='3-4' value='7極為同意'> 7極為同意
+
+		</div>
+		
+		<div class='question'>
+		<p class='media'>M04</p>
+		<audio id="M04" controls><source src="music/M4.mp3" type="audio/mpeg"></audio><br>
+            <p class='question'>1)主題出現之前，我非常期待接下來的音樂主題。</p>
+                <input type='radio' name='4-1' value='1極不同意'> 1極不同意
+                <input type="radio" name='4-1' value='2不同意'> 2不同意
+                <input type="radio" name='4-1' value='3不太同意'> 3不太同意
+                <input type="radio" name='4-1' value='4無意見'> 4無意見
+                <input type='radio' name='4-1' value='5有點同意'> 5有點同意
+                <input type="radio" name='4-1' value='6同意'> 6同意
+                <input type="radio" name='4-1' value='7極為同意'> 7極為同意
+
+
+	    <p class='question'>2)主題出現時，傳達了強烈的愉悅感。</p>
+     		
+                <input type='radio' name='4-2' value='1極不同意'> 1極不同意
+                <input type="radio" name='4-2' value='2不同意'> 2不同意
+                <input type="radio" name='4-2' value='3不太同意'> 3不太同意
+                <input type="radio" name='4-2' value='4無意見'> 4無意見
+                <input type='radio' name='4-2' value='5有點同意'> 5有點同意
+                <input type="radio" name='4-2' value='6同意'> 6同意
+                <input type="radio" name='4-2' value='7極為同意'> 7極為同意
+
+            <p class='question'>3)主題出現時，傳達了強烈的悲劇性。</p>
+
+                <input type='radio' name='4-3' value='1極不同意'> 1極不同意
+                <input type="radio" name='4-3' value='2不同意'> 2不同意
+                <input type="radio" name='4-3' value='3不太同意'> 3不太同意
+                <input type="radio" name='4-3' value='4無意見'> 4無意見
+                <input type='radio' name='4-3' value='5有點同意'> 5有點同意
+                <input type="radio" name='4-3' value='6同意'> 6同意
+                <input type="radio" name='4-3' value='7極為同意'> 7極為同意
+
+            <p class='question'>4)現在我非常熟悉這段音樂。</p>
+
+                <input type='radio' name='4-4' value='1極不同意'> 1極不同意
+                <input type="radio" name='4-4' value='2不同意'> 2不同意
+                <input type="radio" name='4-4' value='3不太同意'> 3不太同意
+                <input type="radio" name='4-4' value='4無意見'> 4無意見
+                <input type='radio' name='4-4' value='5有點同意'> 5有點同意
+                <input type="radio" name='4-4' value='6同意'> 6同意
+                <input type="radio" name='4-4' value='7極為同意'> 7極為同意
+
+		</div>
+		
+		<div class='question'>
+		<p class='media'>M05</p>
+		<audio id="M05" controls><source src="music/M5.mp3" type="audio/mpeg"></audio><br>
+            <p class='question'>1)主題出現之前，我非常期待接下來的音樂主題。</p>
+                <input type='radio' name='5-1' value='1極不同意'> 1極不同意
+                <input type="radio" name='5-1' value='2不同意'> 2不同意
+                <input type="radio" name='5-1' value='3不太同意'> 3不太同意
+                <input type="radio" name='5-1' value='4無意見'> 4無意見
+                <input type='radio' name='5-1' value='5有點同意'> 5有點同意
+                <input type="radio" name='5-1' value='6同意'> 6同意
+                <input type="radio" name='5-1' value='7極為同意'> 7極為同意
+
+      
+	       <p class='question'>2)主題出現時，傳達了強烈的愉悅感。</p>
+     		
+                <input type='radio' name='5-2' value='1極不同意'> 1極不同意
+                <input type="radio" name='5-2' value='2不同意'> 2不同意
+                <input type="radio" name='5-2' value='3不太同意'> 3不太同意
+                <input type="radio" name='5-2' value='4無意見'> 4無意見
+                <input type='radio' name='5-2' value='5有點同意'> 5有點同意
+                <input type="radio" name='5-2' value='6同意'> 6同意
+                <input type="radio" name='5-2' value='7極為同意'> 7極為同意
+
+            <p class='question'>3)主題出現時，傳達了強烈的悲劇性。</p>
+
+                <input type='radio' name='5-3' value='1極不同意'> 1極不同意
+                <input type="radio" name='5-3' value='2不同意'> 2不同意
+                <input type="radio" name='5-3' value='3不太同意'> 3不太同意
+                <input type="radio" name='5-3' value='4無意見'> 4無意見
+                <input type='radio' name='5-3' value='5有點同意'> 5有點同意
+                <input type="radio" name='5-3' value='6同意'> 6同意
+                <input type="radio" name='5-3' value='7極為同意'> 7極為同意
+
+            <p class='question'>4)現在我非常熟悉這段音樂。</p>
+
+                <input type='radio' name='5-4' value='1極不同意'> 1極不同意
+                <input type="radio" name='5-4' value='2不同意'> 2不同意
+                <input type="radio" name='5-4' value='3不太同意'> 3不太同意
+                <input type="radio" name='5-4' value='4無意見'> 4無意見
+                <input type='radio' name='5-4' value='5有點同意'> 5有點同意
+                <input type="radio" name='5-4' value='6同意'> 6同意
+                <input type="radio" name='5-4' value='7極為同意'> 7極為同意
+
+		</div>
+		
+		
+		<div class=question>
+		<p class='media'>M06</p>
+		<audio id="M06" controls><source src="music/M6.mp3" type="audio/mpeg"></audio><br>
+            <p class='question'>1)主題出現之前，我非常期待接下來的音樂主題。</p>
+                <input type='radio' name='6-1' value='1極不同意'> 1極不同意
+                <input type="radio" name='6-1' value='2不同意'> 2不同意
+                <input type="radio" name='6-1' value='3不太同意'> 3不太同意
+                <input type="radio" name='6-1' value='4無意見'> 4無意見
+                <input type='radio' name='6-1' value='5有點同意'> 5有點同意
+                <input type="radio" name='6-1' value='6同意'> 6同意
+                <input type="radio" name='6-1' value='7極為同意'> 7極為同意
+
+
+	    <p class='question'>2)主題出現時，傳達了強烈的愉悅感。</p>
+     		
+                <input type='radio' name='6-2' value='1極不同意'> 1極不同意
+                <input type="radio" name='6-2' value='2不同意'> 2不同意
+                <input type="radio" name='6-2' value='3不太同意'> 3不太同意
+                <input type="radio" name='6-2' value='4無意見'> 4無意見
+                <input type='radio' name='6-2' value='5有點同意'> 5有點同意
+                <input type="radio" name='6-2' value='6同意'> 6同意
+                <input type="radio" name='6-2' value='7極為同意'> 7極為同意
+
+            <p class='question'>3)主題出現時，傳達了強烈的悲劇性。</p>
+
+                <input type='radio' name='6-3' value='1極不同意'> 1極不同意
+                <input type="radio" name='6-3' value='2不同意'> 2不同意
+                <input type="radio" name='6-3' value='3不太同意'> 3不太同意
+                <input type="radio" name='6-3' value='4無意見'> 4無意見
+                <input type='radio' name='6-3' value='5有點同意'> 5有點同意
+                <input type="radio" name='6-3' value='6同意'> 6同意
+                <input type="radio" name='6-3' value='7極為同意'> 7極為同意
+
+            <p class='question'>4)現在我非常熟悉這段音樂。</p>
+
+                <input type='radio' name='6-4' value='1極不同意'> 1極不同意
+                <input type="radio" name='6-4' value='2不同意'> 2不同意
+                <input type="radio" name='6-4' value='3不太同意'> 3不太同意
+                <input type="radio" name='6-4' value='4無意見'> 4無意見
+                <input type='radio' name='6-4' value='5有點同意'> 5有點同意
+                <input type="radio" name='6-4' value='6同意'> 6同意
+                <input type="radio" name='6-4' value='7極為同意'> 7極為同意
+
+		</div>
+		
+		<div class='question'>
+		<p class='media'>M07</p>
+		<audio id="M07" controls><source src="music/M7.mp3" type="audio/mpeg"></audio><br>
+            <p class='question'>1)主題出現之前，我非常期待接下來的音樂主題。</p>
+                <input type='radio' name='7-1' value='1極不同意'> 1極不同意
+                <input type="radio" name='7-1' value='2不同意'> 2不同意
+                <input type="radio" name='7-1' value='3不太同意'> 3不太同意
+                <input type="radio" name='7-1' value='4無意見'> 4無意見
+                <input type='radio' name='7-1' value='5有點同意'> 5有點同意
+                <input type="radio" name='7-1' value='6同意'> 6同意
+                <input type="radio" name='7-1' value='7極為同意'> 7極為同意
+
+
+	        <p class='question'>2)主題出現時，傳達了強烈的愉悅感。</p>
+     		
+                <input type='radio' name='7-2' value='1極不同意'> 1極不同意
+                <input type="radio" name='7-2' value='2不同意'> 2不同意
+                <input type="radio" name='7-2' value='3不太同意'> 3不太同意
+                <input type="radio" name='7-2' value='4無意見'> 4無意見
+                <input type='radio' name='7-2' value='5有點同意'> 5有點同意
+                <input type="radio" name='7-2' value='6同意'> 6同意
+                <input type="radio" name='7-2' value='7極為同意'> 7極為同意
+
+            <p class='question'>3)主題出現時，傳達了強烈的悲劇性。</p>
+
+                <input type='radio' name='7-3' value='1極不同意'> 1極不同意
+                <input type="radio" name='7-3' value='2不同意'> 2不同意
+                <input type="radio" name='7-3' value='3不太同意'> 3不太同意
+                <input type="radio" name='7-3' value='4無意見'> 4無意見
+                <input type='radio' name='7-3' value='5有點同意'> 5有點同意
+                <input type="radio" name='7-3' value='6同意'> 6同意
+                <input type="radio" name='7-3' value='7極為同意'> 7極為同意
+
+            <p class='question'>4)現在我非常熟悉這段音樂。</p>
+
+                <input type='radio' name='7-4' value='1極不同意'> 1極不同意
+                <input type="radio" name='7-4' value='2不同意'> 2不同意
+                <input type="radio" name='7-4' value='3不太同意'> 3不太同意
+                <input type="radio" name='7-4' value='4無意見'> 4無意見
+                <input type='radio' name='7-4' value='5有點同意'> 5有點同意
+                <input type="radio" name='7-4' value='6同意'> 6同意
+                <input type="radio" name='7-4' value='7極為同意'> 7極為同意
+
+		</div>
+
+		<div class='question'>
+		<p class='media'>M08</p>
+		<audio id="M08" controls><source src="music/M8.mp3" type="audio/mpeg"></audio><br>
+            <p class='question'>1)主題出現之前，我非常期待接下來的音樂主題。</p>
+                <input type='radio' name='8-1' value='1極不同意'> 1極不同意
+                <input type="radio" name='8-1' value='2不同意'> 2不同意
+                <input type="radio" name='8-1' value='3不太同意'> 3不太同意
+                <input type="radio" name='8-1' value='4無意見'> 4無意見
+                <input type='radio' name='8-1' value='5有點同意'> 5有點同意
+                <input type="radio" name='8-1' value='6同意'> 6同意
+                <input type="radio" name='8-1' value='7極為同意'> 7極為同意
+
+
+	        <p class='question'>2)主題出現時，傳達了強烈的愉悅感。</p>
+     		
+                <input type='radio' name='8-2' value='1極不同意'> 1極不同意
+                <input type="radio" name='8-2' value='2不同意'> 2不同意
+                <input type="radio" name='8-2' value='3不太同意'> 3不太同意
+                <input type="radio" name='8-2' value='4無意見'> 4無意見
+                <input type='radio' name='8-2' value='5有點同意'> 5有點同意
+                <input type="radio" name='8-2' value='6同意'> 6同意
+                <input type="radio" name='8-2' value='7極為同意'> 7極為同意
+
+            <p class='question'>3)主題出現時，傳達了強烈的悲劇性。</p>
+
+                <input type='radio' name='8-3' value='1極不同意'> 1極不同意
+                <input type="radio" name='8-3' value='2不同意'> 2不同意
+                <input type="radio" name='8-3' value='3不太同意'> 3不太同意
+                <input type="radio" name='8-3' value='4無意見'> 4無意見
+                <input type='radio' name='8-3' value='5有點同意'> 5有點同意
+                <input type="radio" name='8-3' value='6同意'> 6同意
+                <input type="radio" name='8-3' value='7極為同意'> 7極為同意
+
+            <p class='question'>4)現在我非常熟悉這段音樂。</p>
+
+                <input type='radio' name='8-4' value='1極不同意'> 1極不同意
+                <input type="radio" name='8-4' value='2不同意'> 2不同意
+                <input type="radio" name='8-4' value='3不太同意'> 3不太同意
+                <input type="radio" name='8-4' value='4無意見'> 4無意見
+                <input type='radio' name='8-4' value='5有點同意'> 5有點同意
+                <input type="radio" name='8-4' value='6同意'> 6同意
+                <input type="radio" name='8-4' value='7極為同意'> 7極為同意
+        </div>
+         
+        <br>	
+		
+		<div class='question'>
+		<p class='media'>單選題</p>
+        <p class='question'> 以下有六段聲音，每段聲音的前半段是音樂，後半段是語音。請問這六段聲音裡面，何者的前後段旋律差異最大？（前半段的音樂旋律跟後半段的語音抑揚起伏相差最大）</p>
+
+
+        <input type='radio' name='9' value='01'>01
+        <audio id="Q9" controls><source src="Q9/01_correct.mp3" type="audio/mpeg">01</audio><br>
+        
+        <input type="radio" name='9' value='02'> 02
+        <audio id="Q9" controls><source src="Q9/02_correct.mp3" type="audio/mpeg">02</audio><br>        
+        
+        <input type="radio" name='9' value='03'> 03
+        <audio id="Q9" controls><source src="Q9/03_correct.mp3" type="audio/mpeg">03</audio><br>        
+		
+        <input type="radio" name='9' value='04'> 04
+		<audio id="Q9" controls><source src="Q9/04_wrong.mp3" type="audio/mpeg">04</audio><br>        
+		
+        <input type='radio' name='9' value='05'> 05     
+		<audio id="Q9" controls><source src="Q9/05_correct.mp3" type="audio/mpeg">05</audio><br>        
+		
+        <input type="radio" name='9' value='06'> 06
+        <audio id="Q9" controls><source src="Q9/06_correct.mp3" type="audio/mpeg">06</audio><br>        
+    </div>
+
+	<div class='info'>
+	<h2 id='info'>麻煩填寫您的基本資料，以便我們聯絡您。</h2>		    
+		<label class='info' for="name">姓名</label>
+		<input class='info' type="text" id="name" name="name"><br>
+
+		<label class='info' for='E-mail'>E-mail:</label>
+		<input class='Email' type="text" name="Email"><br>
+
+		<input type='submit' class='submit' value='完成測驗' onclick='FunAlert()' ' style= '1.2em'>			
+	</form>
+	</div>
+	
+	<div id='other_info'>
+		<p class='other_info'>聯絡人：陳昭儒，電話: 0910146025，電子郵件: train981316@gmail.com</br>
+研究計畫主持人：臺灣大學音樂學研究所蔡振家副教授，電話: 02-33664691，電子郵件: tsaichengia@ntu.edu.tw</p>
+
+    <br><br>
+
+	<!--<button class ='button button1'id='submit' onclick= 'myfunction()' >提交</button> -->	
+	
+	<script> 
+	function myfunction(){
+		var h= document.createElement('H1');
+		var t= document.createTextNode('非常感謝您的填答!!');
+		h.appendChild(t);
+		document.body.appendChild(h);
+	}
+	</script>
+	
+	<script>
+	function append_select(){
+		var itm = document.getElementById("select_description");
+		var cln = itm.cloneNode(true);
+		document.body.appendChild(cln);
+	}
+	</script>
+	
+	
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="app.js"></script>
+	<script src="https://use.typekit.net/oag4xvy.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+	
+	</body>
+</html>									
